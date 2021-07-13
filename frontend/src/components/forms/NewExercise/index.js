@@ -38,6 +38,7 @@ export default function NewExercise() {
 
 	return (
 		<form onSubmit={handleSubmit} className="new-exercise-form">
+			<h2>Add New Exercise</h2>
 			<label htmlFor="">
 				Category
 				<select value={category} name="" id="" onChange={e => setCategory(e.target.value)}>
