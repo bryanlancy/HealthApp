@@ -23,7 +23,8 @@ function Navigation({ isLoaded }) {
 			<NavLink exact to="/">
 				Home
 			</NavLink>
-			{isLoaded && sessionLinks}
+
+			<div>{isLoaded && sessionLinks}</div>
 		</nav>
 	)
 }
