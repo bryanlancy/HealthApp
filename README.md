@@ -1,7 +1,7 @@
 # Health App
 
-1. Clone the project with <br>`git clone https://github.com/bryanlancy/HealthApp.git`
-1. In the root directory run the command: <br>`npm run install`
+1. Clone the project with:<br>`git clone https://github.com/bryanlancy/HealthApp.git`
+1. In the root directory run the command:<br>`npm run install`
 
 
 ## Frontend
