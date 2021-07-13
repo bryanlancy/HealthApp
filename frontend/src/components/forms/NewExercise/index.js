@@ -1,19 +1,39 @@
 import { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { newExercise } from '../../../store/exercise'
 
 export default function NewExercise() {
+	const dispatch = useDispatch()
 	const categories = useSelector(state => state.exercise)
-	console.log(categories)
 
-	const [category, setCategory] = useState('')
+	const [category, setCategory] = useState(Object.keys(categories)[0] || 'new')
+	const [newCategory, setNewCategory] = useState('')
 	const [variation, setVariation] = useState('')
-	const [MET, setMET] = useState(0.0)
+	const [met, setMet] = useState(0.0)
 	const [label, setLabel] = useState('')
 	const [description, setDescription] = useState('')
 	const [image, setImage] = useState('')
 
-	function handleSubmit(e) {
+	function resetForm() {
+		setCategory('')
+		setNewCategory('')
+		setVariation('')
+		setMet(0)
+		setLabel('')
+		setDescription('')
+		setImage('')
+	}
+
+	async function handleSubmit(e) {
 		e.preventDefault()
+		const exercise = {
+			label,
+			description,
+			met,
+			image,
+		}
+		const response = await dispatch(newExercise(category !== 'new' ? category : newCategory, exercise))
+		if (response.ok) resetForm()
 	}
 
 	return (
@@ -22,7 +42,9 @@ export default function NewExercise() {
 				Category
 				<select value={category} name="" id="" onChange={e => setCategory(e.target.value)}>
 					{Object.keys(categories).map(cat => (
-						<option value={cat}>{cat[0].toUpperCase() + cat.slice(1)}</option>
+						<option key={cat} value={cat}>
+							{cat[0].toUpperCase() + cat.slice(1)}
+						</option>
 					))}
 					<option value="new">New</option>
 				</select>
@@ -30,20 +52,16 @@ export default function NewExercise() {
 			{category === 'new' && (
 				<label htmlFor="">
 					New Category
-					<input type="text" value={category} onChange={e => setCategory(e.target.value)} />
+					<input type="text" value={newCategory} onChange={e => setNewCategory(e.target.value)} />
 				</label>
 			)}
 			<label htmlFor="">
-				Variation
-				<input type="text" value={variation} onChange={e => setVariation(e.target.value)} />
+				Label
+				<input type="text" value={label} onChange={e => setLabel(e.target.value)} required />
 			</label>
 			<label htmlFor="">
 				MET
-				<input type="number" value={MET} onChange={e => setMET(e.target.value)} step=".1" />
-			</label>
-			<label htmlFor="">
-				Label
-				<input type="text" value={label} onChange={e => setLabel(e.target.value)} />
+				<input type="number" value={met} onChange={e => setMet(e.target.value)} step=".1" />
 			</label>
 			<label htmlFor="">
 				Description

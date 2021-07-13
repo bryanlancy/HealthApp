@@ -2,17 +2,18 @@ import { csrfFetch } from './csrf'
 
 const ADD_EXERCISE = 'exercise/ADD_EXERCISE'
 
-const setUser = exercise => {
+const addExercise = exercise => {
 	return {
 		type: ADD_EXERCISE,
 		payload: exercise,
 	}
 }
-export const restoreUser = () => async dispatch => {
-	const response = await csrfFetch('/api/session')
-	const data = await response.json()
-	dispatch(setUser(data.user))
-	return response
+export const newExercise = (category, exercise) => async dispatch => {
+	// const response = await csrfFetch('/api/session')
+	// const data = await response.json()
+	const exerciseId = Math.random()
+	dispatch(addExercise({ category: category.toLowerCase(), exercise: { [exerciseId]: exercise } }))
+	return { ok: true }
 }
 const initialState = {
 	pushups: {
@@ -40,7 +41,14 @@ export default function exerciseReducer(state = initialState, action) {
 		case ADD_EXERCISE:
 			const { category, exercise } = action.payload
 			newState = Object.assign({}, state)
-			newState[category] = { ...newState.category, exercise }
+			newState[category] = {
+				...newState[category],
+				exercises: {
+					...(newState[category] ? newState[category].exercises : {}),
+					...exercise,
+				},
+			}
+
 			return newState
 		default:
 			return state
