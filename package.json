@@ -1,0 +1,17 @@
+{
+	"name": "healthapp",
+	"version": "1.0.0",
+	"scripts": {
+		"install": "npm --prefix backend install backend && npm --prefix frontend install frontend"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/bryanlancy/HealthApp.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/bryanlancy/HealthApp/issues"
+	},
+	"homepage": "https://github.com/bryanlancy/HealthApp#readme"
+}
