@@ -1,6 +1,6 @@
 # Health App
 
-1. Clone the project with `git clone *COPY REPO LINK*`
+1. Clone the project with `git clone https://github.com/bryanlancy/HealthApp.git`
 1. In the root directory run the command: <br> `npm run install`
 
 
