@@ -2,17 +2,24 @@ import { useSelector } from 'react-redux'
 
 export default function NewWorkout() {
 	const categories = useSelector(state => state.exercise)
-	console.log()
+
+	let categoryOptions = []
+	for (const id in categories) {
+		const { label } = categories[id]
+		const formatted = label[0].toUpperCase() + label.slice(1)
+		categoryOptions.push(
+			<option key={`exercise-${id}`} value={id}>
+				{formatted}
+			</option>
+		)
+	}
+
 	return (
 		<form className="new-workout-form">
 			<h2>Add New Workout</h2>
 			<label htmlFor="">
 				Exercise
-				<input type="text" list="exercise" />
-				<datalist id="exercise">
-					<option value="HARDCODE Pushups" />
-					<option value="HARDCODE Pullups" />
-				</datalist>
+				<select id="exercise">{categoryOptions}</select>
 			</label>
 			<label htmlFor="">
 				Reps

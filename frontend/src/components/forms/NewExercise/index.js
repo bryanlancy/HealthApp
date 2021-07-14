@@ -8,7 +8,6 @@ export default function NewExercise() {
 
 	const [category, setCategory] = useState(Object.keys(categories)[0] || 'new')
 	const [newCategory, setNewCategory] = useState('')
-	const [variation, setVariation] = useState('')
 	const [met, setMet] = useState(0.0)
 	const [label, setLabel] = useState('')
 	const [description, setDescription] = useState('')
@@ -17,7 +16,6 @@ export default function NewExercise() {
 	function resetForm() {
 		setCategory('')
 		setNewCategory('')
-		setVariation('')
 		setMet(0)
 		setLabel('')
 		setDescription('')
@@ -33,7 +31,21 @@ export default function NewExercise() {
 			image,
 		}
 		const response = await dispatch(newExercise(category !== 'new' ? category : newCategory, exercise))
-		if (response.ok) resetForm()
+		if (response.ok) {
+			resetForm()
+			setCategory(response.category.id)
+		}
+	}
+
+	let categoryOptions = []
+	for (const id in categories) {
+		const { label } = categories[id]
+		const formatted = label[0].toUpperCase() + label.slice(1)
+		categoryOptions.push(
+			<option key={`exercise-${id}`} value={id}>
+				{formatted}
+			</option>
+		)
 	}
 
 	return (
@@ -42,11 +54,7 @@ export default function NewExercise() {
 			<label htmlFor="">
 				Category
 				<select value={category} name="" id="" onChange={e => setCategory(e.target.value)}>
-					{Object.keys(categories).map(cat => (
-						<option key={cat} value={cat}>
-							{cat[0].toUpperCase() + cat.slice(1)}
-						</option>
-					))}
+					{categoryOptions}
 					<option value="new">New</option>
 				</select>
 			</label>
