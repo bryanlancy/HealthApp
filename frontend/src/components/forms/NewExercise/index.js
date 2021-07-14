@@ -42,11 +42,14 @@ export default function NewExercise() {
 			<label htmlFor="">
 				Category
 				<select value={category} name="" id="" onChange={e => setCategory(e.target.value)}>
-					{Object.keys(categories).map(cat => (
-						<option key={cat} value={cat}>
-							{cat[0].toUpperCase() + cat.slice(1)}
-						</option>
-					))}
+					{Object.keys(categories).map(cat => {
+						const { label } = categories[cat]
+						return (
+							<option key={cat} value={cat}>
+								{label[0].toUpperCase() + label.slice(1)}
+							</option>
+						)
+					})}
 					<option value="new">New</option>
 				</select>
 			</label>

@@ -9,15 +9,15 @@ const addExercise = exercise => {
 	}
 }
 export const newExercise = (category, exercise) => async dispatch => {
-	// const response = await csrfFetch('/api/session')
+	const response = await csrfFetch('/api/exercises', { method: 'POST' })
 	// const data = await response.json()
 	const exerciseId = Math.random()
 	dispatch(addExercise({ category: category.toLowerCase(), exercise: { [exerciseId]: exercise } }))
 	return { ok: true }
 }
 const initialState = {
-	pushups: {
-		id: 123456789,
+	123456789: {
+		label: 'pushups',
 		exercises: {
 			exerciseID1: {
 				label: 'Diamond Pushup',
