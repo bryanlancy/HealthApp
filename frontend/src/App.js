@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 
 import * as sessionActions from './store/session'
+import { populateExercise } from './store/exercise'
 
 import Navigation from './components/Navigation'
 
@@ -11,8 +12,15 @@ import { LoginForm, SignupForm, NewExercise } from './components/forms'
 function App() {
 	const dispatch = useDispatch()
 	const [isLoaded, setIsLoaded] = useState(false)
+
 	useEffect(() => {
-		dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true))
+		dispatch(sessionActions.restoreUser())
+			.then(() => {
+				dispatch(populateExercise())
+			})
+			.then(() => {
+				setIsLoaded(true)
+			})
 	}, [dispatch])
 
 	return (

@@ -11,6 +11,9 @@ module.exports = {
 			label: {
 				allowNull: false,
 				type: Sequelize.STRING,
+				validate: {
+					len: [1],
+				},
 			},
 			createdAt: {
 				allowNull: false,
