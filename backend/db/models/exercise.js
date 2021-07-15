@@ -3,7 +3,6 @@ module.exports = (sequelize, DataTypes) => {
 	const Exercise = sequelize.define(
 		'Exercise',
 		{
-			categoryId: DataTypes.INTEGER,
 			label: DataTypes.STRING,
 			description: DataTypes.STRING,
 			met: DataTypes.DECIMAL,
@@ -12,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
 		{}
 	)
 	Exercise.associate = function (models) {
-		Exercise.belongsTo(models.Category, { foreignKey: 'categoryId' })
+		Exercise.hasMany(models.ExerciseCategory, { foreignKey: 'exerciseId' })
 		Exercise.hasMany(models.Workout, { foreignKey: 'exerciseId' })
 	}
 	return Exercise
