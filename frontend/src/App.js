@@ -6,8 +6,8 @@ import * as sessionActions from './store/session'
 import { populateExercise } from './store/exercise'
 
 import Navigation from './components/Navigation'
-
 import { LoginForm, SignupForm, NewExercise, NewWorkout } from './components/forms'
+import ProtectedRoute from './components/ProtectedRoute'
 
 function App() {
 	const dispatch = useDispatch()
@@ -34,12 +34,12 @@ function App() {
 					<Route path="/signup">
 						<SignupForm />
 					</Route>
-					<Route path="/new-exercise">
+					<ProtectedRoute path="/new-exercise">
 						<NewExercise />
-					</Route>
-					<Route path="/new-workout">
+					</ProtectedRoute>
+					<ProtectedRoute path="/new-workout">
 						<NewWorkout />
-					</Route>
+					</ProtectedRoute>
 				</Switch>
 			)}
 		</>
