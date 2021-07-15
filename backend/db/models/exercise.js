@@ -6,6 +6,7 @@ module.exports = (sequelize, DataTypes) => {
 			label: DataTypes.STRING,
 			description: DataTypes.STRING,
 			met: DataTypes.DECIMAL,
+			duration: DataTypes.DECIMAL,
 			image: DataTypes.STRING,
 		},
 		{}

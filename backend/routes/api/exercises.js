@@ -37,11 +37,12 @@ router.get(
 router.post(
 	'/',
 	asyncHandler(async (req, res) => {
-		const { categoryId, label, description, met, image } = req.body
+		const { categoryId, label, description, met, duration, image } = req.body
 		const exercise = await Exercise.create({
 			label,
 			description,
 			met,
+			duration,
 			image,
 		})
 
