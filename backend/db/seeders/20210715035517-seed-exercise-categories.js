@@ -14,6 +14,14 @@ const exerciseCategories = [
 		exerciseId: 2,
 		categoryId: 3,
 	},
+	{
+		exerciseId: 3,
+		categoryId: 2,
+	},
+	{
+		exerciseId: 3,
+		categoryId: 3,
+	},
 ]
 
 module.exports = {

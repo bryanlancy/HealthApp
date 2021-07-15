@@ -14,6 +14,12 @@ const exercises = [
 		met: 3.8,
 		image: '',
 	},
+	{
+		label: 'Wide-Grip Pullup',
+		description: 'Keep body stable. Wider grip than usual',
+		met: 3.8,
+		image: '',
+	},
 ]
 
 module.exports = {
