@@ -30,11 +30,12 @@ router.get(
 						exercises: Object.assign(
 							{},
 							...ExerciseCategories.map(exercise => {
-								const { id, label, description, met, image } = exercise.Exercise
+								const { id, label, description, quantity, met, image } = exercise.Exercise
 								return {
 									[id]: {
 										label,
 										description,
+										quantity,
 										met: parseFloat(met),
 										image,
 									},

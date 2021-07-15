@@ -43,8 +43,8 @@ export const newExercise = (categoryId, exercise) => async (dispatch, getState) 
 	const response = await csrfFetch('/api/exercises', { method: 'POST', body: JSON.stringify({ ...exercise, categoryId }) })
 	if (response.ok) {
 		const data = await response.json()
-		const { id: exerciseId, label, image, met, description } = data.exercise
-		dispatch(addExercise({ categoryId, exercise: { [exerciseId]: { label, description, met, image } } }))
+		const { id: exerciseId, label, image, met, duration, description } = data.exercise
+		dispatch(addExercise({ categoryId, exercise: { [exerciseId]: { label, description, met, duration, image } } }))
 		return { ok: true, category: { id: categoryId } }
 	}
 }
@@ -55,25 +55,7 @@ export const populateExercise = () => async dispatch => {
 		dispatch(loadExercises(categories))
 	}
 }
-const initialState = {
-	123456789: {
-		label: 'pushups',
-		exercises: {
-			exerciseID1: {
-				label: 'Diamond Pushup',
-				description: 'Thumbs and pointer fingers should touch.',
-				met: 1.2,
-				image: '',
-			},
-			exerciseID2: {
-				label: 'Standard',
-				description: 'Normal',
-				met: 1.0,
-				image: '',
-			},
-		},
-	},
-}
+const initialState = {}
 
 export default function exerciseReducer(state = initialState, action) {
 	let newState

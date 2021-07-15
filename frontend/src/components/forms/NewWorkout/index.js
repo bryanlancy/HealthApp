@@ -1,58 +1,75 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useSelector } from 'react-redux'
 
 export default function NewWorkout() {
 	const categories = useSelector(state => state.exercise)
 
 	const [category, setCategory] = useState(Object.keys(categories)[0])
-	const [categoryOptions, setCategoryOptions] = useState([])
-	const [exerciseOptions, setExerciseOptions] = useState([])
+	const [exercise, setExercise] = useState(0)
 
-	useEffect(() => {
-		let categoryList = []
+	const categoryOptions = useMemo(() => {
+		let list = []
 		for (const id in categories) {
 			const { label } = categories[id]
 			const formatted = label[0].toUpperCase() + label.slice(1)
-			categoryList.push(
-				<option key={`category-${id}`} value={id}>
+			list.push(
+				<option key={`exercise-${id}`} value={id}>
 					{formatted}
 				</option>
 			)
+			if (list.length === 1) setCategory(id)
 		}
-		setCategoryOptions(categoryList)
+		return list
 	}, [categories])
-	useEffect(() => {
-		const exercises = categories[category].exercises
-		let exerciseList = []
+
+	const exerciseOptions = useMemo(() => {
+		let list = []
+		const exercises = categories[category]?.exercises
 		for (const id in exercises) {
 			const { label } = exercises[id]
 			const formatted = label[0].toUpperCase() + label.slice(1)
-			exerciseList.push(
+			list.push(
 				<option key={`exercise-${id}`} value={id}>
 					{formatted}
 				</option>
 			)
 		}
-		setExerciseOptions(exerciseList)
-	}, [categories, category])
+		return list
+	}, [category, categories])
+
+	useEffect(() => {
+		const obj = categories[category]?.exercises[exercise]
+		if (obj) {
+			console.log(obj)
+			console.log(exercise)
+		}
+	}, [exercise, category, categories])
 
 	return (
 		<form className="new-workout-form">
 			<h2>Add New Workout</h2>
-			<label htmlFor="">
-				Category
-				<select value={category} onChange={e => setCategory(e.target.value)} id="exercise">
-					{categoryOptions}
-				</select>
-			</label>
-			<label htmlFor="">
-				Exercise
-				<select id="exercise">{exerciseOptions}</select>
-			</label>
-			<label htmlFor="">
-				Reps
-				<input type="text" />
-			</label>
+			<section>
+				<h3>Select Workout</h3>
+				<label htmlFor="">
+					Category
+					<select value={category} onChange={e => setCategory(e.target.value)} id="exercise">
+						{categoryOptions}
+					</select>
+				</label>
+				<label htmlFor="">
+					Exercise
+					<select value={exercise} onChange={e => setExercise(e.target.value)} id="exercise">
+						{exerciseOptions}
+					</select>
+				</label>
+			</section>
+			<section>
+				<h3>{}</h3>
+				<label htmlFor="">
+					Reps
+					<input type="text" />
+				</label>
+			</section>
 			<button type="submit">Add Workout</button>
 		</form>
 	)

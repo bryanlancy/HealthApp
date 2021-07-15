@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { newExercise } from '../../../store/exercise'
 
@@ -6,9 +6,11 @@ export default function NewExercise() {
 	const dispatch = useDispatch()
 	const categories = useSelector(state => state.exercise)
 
-	const [category, setCategory] = useState(Object.keys(categories)[0] || 'new')
 	const [newCategory, setNewCategory] = useState('')
+	const [quantity, setQuantity] = useState('time')
+	const [category, setCategory] = useState(Object.keys(categories)[0] || 'new')
 	const [met, setMet] = useState(0.0)
+	const [duration, setDuration] = useState(0)
 	const [label, setLabel] = useState('')
 	const [description, setDescription] = useState('')
 	const [image, setImage] = useState('')
@@ -16,7 +18,9 @@ export default function NewExercise() {
 	function resetForm() {
 		setCategory('')
 		setNewCategory('')
+		setQuantity('time')
 		setMet(0)
+		setDuration(0)
 		setLabel('')
 		setDescription('')
 		setImage('')
@@ -27,7 +31,9 @@ export default function NewExercise() {
 		const exercise = {
 			label,
 			description,
+			quantity,
 			met,
+			duration,
 			image,
 		}
 		const response = await dispatch(newExercise(category !== 'new' ? category : newCategory, exercise))
@@ -37,16 +43,27 @@ export default function NewExercise() {
 		}
 	}
 
-	let categoryOptions = []
-	for (const id in categories) {
-		const { label } = categories[id]
-		const formatted = label[0].toUpperCase() + label.slice(1)
-		categoryOptions.push(
-			<option key={`exercise-${id}`} value={id}>
-				{formatted}
-			</option>
-		)
+	function updateQuantity(e) {
+		setQuantity(e.target.value)
+		if (e.target.value !== 'reps') {
+			setDuration(0)
+		}
 	}
+
+	const categoryOptions = useMemo(() => {
+		let list = []
+		for (const id in categories) {
+			const { label } = categories[id]
+			const formatted = label[0].toUpperCase() + label.slice(1)
+			list.push(
+				<option key={`exercise-${id}`} value={id}>
+					{formatted}
+				</option>
+			)
+			if (list.length === 1) setCategory(id)
+		}
+		return list
+	}, [categories])
 
 	return (
 		<form onSubmit={handleSubmit} className="new-exercise-form">
@@ -72,6 +89,19 @@ export default function NewExercise() {
 				MET
 				<input type="number" value={met} onChange={e => setMet(e.target.value)} step=".1" />
 			</label>
+			<label htmlFor="">
+				Quantity
+				<select value={quantity} name="" id="" onChange={updateQuantity}>
+					<option value="time">Time</option>
+					<option value="reps">Reps</option>
+				</select>
+			</label>
+			{quantity === 'reps' && (
+				<label htmlFor="">
+					Duration (seconds)
+					<input type="number" value={duration} onChange={e => setDuration(e.target.value)} placeholder="Time per repitition" />
+				</label>
+			)}
 			<label htmlFor="">
 				Description
 				<textarea value={description} onChange={e => setDescription(e.target.value)} />

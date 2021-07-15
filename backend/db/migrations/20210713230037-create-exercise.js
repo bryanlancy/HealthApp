@@ -15,12 +15,15 @@ module.exports = {
 			description: {
 				type: Sequelize.STRING,
 			},
+			quantity: {
+				allowNull: false,
+				type: Sequelize.STRING,
+			},
 			met: {
 				allowNull: false,
 				type: Sequelize.DECIMAL,
 			},
 			duration: {
-				allowNull: false,
 				type: Sequelize.DECIMAL,
 			},
 			image: {

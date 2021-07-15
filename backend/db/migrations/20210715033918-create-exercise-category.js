@@ -11,11 +11,13 @@ module.exports = {
 			exerciseId: {
 				allowNull: false,
 				type: Sequelize.INTEGER,
+				onDelete: 'CASCADE',
 				references: { model: 'Exercises' },
 			},
 			categoryId: {
 				allowNull: false,
 				type: Sequelize.INTEGER,
+				onDelete: 'CASCADE',
 				references: { model: 'Categories' },
 			},
 			createdAt: {

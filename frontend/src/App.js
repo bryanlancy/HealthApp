@@ -16,6 +16,7 @@ function App() {
 	useEffect(() => {
 		dispatch(sessionActions.restoreUser())
 			.then(() => {
+				//CHANGE TO RETURN PROMISE HERE
 				dispatch(populateExercise())
 			})
 			.then(() => {

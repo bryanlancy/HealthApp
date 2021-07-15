@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
 		{
 			label: DataTypes.STRING,
 			description: DataTypes.STRING,
+			quantity: DataTypes.STRING,
 			met: DataTypes.DECIMAL,
 			duration: DataTypes.DECIMAL,
 			image: DataTypes.STRING,
@@ -12,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
 		{}
 	)
 	Exercise.associate = function (models) {
-		Exercise.hasMany(models.ExerciseCategory, { foreignKey: 'exerciseId' })
+		Exercise.hasMany(models.ExerciseCategory, { foreignKey: 'exerciseId', onDelete: 'CASCADE' })
 		Exercise.hasMany(models.Workout, { foreignKey: 'exerciseId' })
 	}
 	return Exercise
