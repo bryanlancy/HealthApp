@@ -7,7 +7,7 @@ const { calculateCalories } = require('../../utils/health')
 // GET /api/workouts
 router.get(
 	'/',
-	// requireAuth,
+	requireAuth,
 	asyncHandler(async (req, res) => {
 		const { userId } = req.query
 		console.log(req.user)
