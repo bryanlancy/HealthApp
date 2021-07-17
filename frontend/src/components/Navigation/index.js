@@ -23,6 +23,12 @@ function Navigation({ isLoaded }) {
 			<NavLink exact to="/">
 				Home
 			</NavLink>
+			<NavLink exact to="/new-exercise">
+				New Exercise
+			</NavLink>
+			<NavLink exact to="/new-workout">
+				New Workout
+			</NavLink>
 
 			<div>{isLoaded && sessionLinks}</div>
 		</nav>
