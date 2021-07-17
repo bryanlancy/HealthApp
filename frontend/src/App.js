@@ -6,8 +6,8 @@ import * as sessionActions from './store/session'
 import { populateExercise } from './store/exercise'
 
 import Navigation from './components/Navigation'
-
-import { LoginForm, SignupForm, NewExercise } from './components/forms'
+import { LoginForm, SignupForm, NewExercise, NewWorkout } from './components/forms'
+import ProtectedRoute from './components/ProtectedRoute'
 
 function App() {
 	const dispatch = useDispatch()
@@ -16,6 +16,7 @@ function App() {
 	useEffect(() => {
 		dispatch(sessionActions.restoreUser())
 			.then(() => {
+				//CHANGE TO RETURN PROMISE HERE
 				dispatch(populateExercise())
 			})
 			.then(() => {
@@ -28,15 +29,19 @@ function App() {
 			<Navigation isLoaded={isLoaded} />
 			{isLoaded && (
 				<Switch>
+					<ProtectedRoute exact path="/"></ProtectedRoute>
 					<Route path="/login">
 						<LoginForm />
 					</Route>
 					<Route path="/signup">
 						<SignupForm />
 					</Route>
-					<Route path="/new-exercise">
+					<ProtectedRoute path="/new-exercise">
 						<NewExercise />
-					</Route>
+					</ProtectedRoute>
+					<ProtectedRoute path="/new-workout">
+						<NewWorkout />
+					</ProtectedRoute>
 				</Switch>
 			)}
 		</>

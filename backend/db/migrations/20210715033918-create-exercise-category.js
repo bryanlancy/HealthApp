@@ -1,33 +1,24 @@
 'use strict'
 module.exports = {
 	up: (queryInterface, Sequelize) => {
-		return queryInterface.createTable('Exercises', {
+		return queryInterface.createTable('ExerciseCategories', {
 			id: {
 				allowNull: false,
 				autoIncrement: true,
 				primaryKey: true,
 				type: Sequelize.INTEGER,
 			},
-			label: {
+			exerciseId: {
 				allowNull: false,
-				type: Sequelize.STRING,
+				type: Sequelize.INTEGER,
+				onDelete: 'CASCADE',
+				references: { model: 'Exercises' },
 			},
-			description: {
-				type: Sequelize.STRING,
-			},
-			quantity: {
+			categoryId: {
 				allowNull: false,
-				type: Sequelize.STRING,
-			},
-			met: {
-				allowNull: false,
-				type: Sequelize.DECIMAL,
-			},
-			duration: {
-				type: Sequelize.DECIMAL,
-			},
-			image: {
-				type: Sequelize.STRING,
+				type: Sequelize.INTEGER,
+				onDelete: 'CASCADE',
+				references: { model: 'Categories' },
 			},
 			createdAt: {
 				allowNull: false,
@@ -40,6 +31,6 @@ module.exports = {
 		})
 	},
 	down: (queryInterface, Sequelize) => {
-		return queryInterface.dropTable('Exercises')
+		return queryInterface.dropTable('ExerciseCategories')
 	},
 }

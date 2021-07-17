@@ -1,36 +1,55 @@
 const router = require('express').Router()
 
 const asyncHandler = require('express-async-handler')
-const { Category, Exercise } = require('../../db/models')
+const { Category, Exercise, ExerciseCategory } = require('../../db/models')
 
 //GET /api/categories
 router.get(
 	'/',
 	asyncHandler(async (req, res) => {
-		const categories = await Category.findAll({ include: Exercise })
+		let categories = await Category.findAll({
+			include: [
+				{
+					model: ExerciseCategory,
+					include: [
+						{
+							model: Exercise,
+						},
+					],
+				},
+			],
+		})
+
+		categories = Object.assign(
+			{},
+			...categories.map(category => {
+				const { id, label, ExerciseCategories } = category
+				return {
+					[id]: {
+						label,
+						exercises: Object.assign(
+							{},
+							...ExerciseCategories.map(exercise => {
+								const { id, label, description, quantity, met, image } = exercise.Exercise
+								return {
+									[id]: {
+										label,
+										description,
+										quantity,
+										met: parseFloat(met),
+										image,
+									},
+								}
+							})
+						),
+					},
+				}
+			})
+		)
 
 		return res.json({
-			count: categories.length,
-			categories: Object.assign(
-				{},
-				...categories.map(cat => {
-					const { id, label, Exercises: exercises } = cat.dataValues
-					return {
-						[id]: {
-							label,
-							exercises: Object.assign(
-								{},
-								...exercises.map(ex => {
-									const { id, label, description, met, image } = ex
-									return {
-										[id]: { label, description, met, image },
-									}
-								})
-							),
-						},
-					}
-				})
-			),
+			count: Object.keys(categories).length,
+			categories,
 		})
 	})
 )

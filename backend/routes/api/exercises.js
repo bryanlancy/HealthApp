@@ -1,14 +1,35 @@
 const router = require('express').Router()
 
 const asyncHandler = require('express-async-handler')
-const { Exercise } = require('../../db/models')
+const { Exercise, ExerciseCategory } = require('../../db/models')
 
 // GET /api/exercises?categoryId
 router.get(
 	'/',
 	asyncHandler(async (req, res) => {
-		const exercises = await Exercise.findAll({ where: { ...req.query } })
-		return res.json({ count: exercises.length, exercises })
+		let exercises = await ExerciseCategory.findAll({
+			where: { ...req.query },
+			include: [
+				{
+					model: Exercise,
+				},
+			],
+		})
+		exercises = Object.assign(
+			{},
+			...exercises.map(exercise => {
+				const { id, label, description, met, image } = exercise.Exercise
+				return {
+					[id]: {
+						label,
+						description,
+						met: parseFloat(met),
+						image,
+					},
+				}
+			})
+		)
+		return res.json({ count: Object.keys(exercises).length, exercises })
 	})
 )
 
@@ -16,13 +37,20 @@ router.get(
 router.post(
 	'/',
 	asyncHandler(async (req, res) => {
-		const { categoryId, label, description, met, image } = req.body
+		const { categoryId, label, description, quantity, met, duration, image } = req.body
 		const exercise = await Exercise.create({
-			categoryId,
 			label,
 			description,
+			quantity,
 			met,
+			duration,
 			image,
+		})
+
+		const { id: exerciseId } = exercise
+		const exerciseCategory = await ExerciseCategory.create({
+			categoryId,
+			exerciseId,
 		})
 		return res.json({ exercise })
 	})
