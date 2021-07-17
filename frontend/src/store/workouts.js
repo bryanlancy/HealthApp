@@ -1,6 +1,6 @@
 import { csrfFetch } from './csrf'
 
-const LOAD_WORKOUTS = 'exercise/LOAD_EXERCISES'
+const LOAD_WORKOUTS = 'exercise/LOAD_WORKOUTS'
 
 const loadWorkouts = categories => {
 	return {
@@ -9,11 +9,22 @@ const loadWorkouts = categories => {
 	}
 }
 
+export const addWorkout = workout => async dispatch => {
+	console.log(workout)
+	const res = await csrfFetch('/api/workouts', {
+		method: 'POST',
+		body: JSON.stringify({ ...workout }),
+	})
+	if (res.ok) {
+		const data = await res.json()
+		return { ok: true }
+	} else return { ok: false }
+}
+
 export const populateWorkouts = () => async dispatch => {
-	const res = await csrfFetch('/api/categories')
+	const res = await csrfFetch('/api/workouts')
 	if (res.ok) {
 		const { workouts } = await res.json()
-		console.log(workouts)
 		dispatch(loadWorkouts(workouts))
 	}
 }

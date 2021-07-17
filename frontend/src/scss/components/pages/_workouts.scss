@@ -1,0 +1,30 @@
+.workouts {
+	// --columns: 1;
+	display: grid;
+	grid-template-columns: repeat(var(--columns), 1fr);
+	gap: 16px;
+
+	padding: 8px;
+}
+.workout {
+	border-radius: 8px;
+	$boxShadow: 4px 4px 8px #00000022;
+	$boxShadowInset: -4px -4px 8px #ffffff99;
+	box-shadow: $boxShadow, $boxShadowInset;
+	padding: 8px;
+
+	&__row {
+		display: flex;
+		justify-content: space-between;
+
+		& > div {
+			display: inherit;
+		}
+	}
+}
+
+@include desktop {
+	.workouts {
+		--columns: 3;
+	}
+}
