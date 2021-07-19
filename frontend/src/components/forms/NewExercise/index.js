@@ -12,9 +12,9 @@ export default function NewExercise() {
 	const [newCategory, setNewCategory] = useState('')
 	const [quantity, setQuantity] = useState('reps')
 	const [category, setCategory] = useState('new')
-	const [met, setMet] = useState(5.0)
+	const [met, setMet] = useState(0)
 	const [duration, setDuration] = useState(0)
-	const [label, setLabel] = useState('Super Pushup')
+	const [label, setLabel] = useState('')
 	const [description, setDescription] = useState('')
 	const [image, setImage] = useState('')
 
@@ -89,7 +89,7 @@ export default function NewExercise() {
 			)}
 			<label htmlFor="">
 				Label
-				<input type="text" value={label} onChange={e => setLabel(e.target.value)} required />
+				<input type="text" value={label} onChange={e => setLabel(e.target.value)} placeholder="Name of exercise" required />
 			</label>
 			<label htmlFor="">
 				MET
