@@ -1,10 +1,13 @@
 .workouts {
-	// --columns: 1;
-	display: grid;
-	grid-template-columns: repeat(var(--columns), 1fr);
-	gap: 16px;
-
 	padding: 8px;
+	&__list {
+		--columns: 1;
+		display: grid;
+		grid-template-columns: repeat(var(--columns), 1fr);
+		gap: 16px;
+
+		margin-top: 8px;
+	}
 }
 .workout {
 	border-radius: 8px;
@@ -17,14 +20,35 @@
 		display: flex;
 		justify-content: space-between;
 
-		& > div {
-			display: inherit;
+		& .fa-fire {
+			--fa-primary-color: orange;
+			--fa-secondary-color: red;
+		}
+	}
+	&__stats {
+		width: 35%;
+		margin-top: 8px;
+	}
+
+	&__exercise {
+		&:hover {
+			cursor: pointer;
+			text-decoration: underline;
 		}
 	}
 }
 
 @include desktop {
 	.workouts {
-		--columns: 3;
+		&__list {
+			--columns: 3;
+		}
+	}
+}
+@include tablet {
+	.workouts {
+		&__list {
+			--columns: 2;
+		}
 	}
 }

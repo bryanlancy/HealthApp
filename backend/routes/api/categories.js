@@ -1,6 +1,8 @@
 const router = require('express').Router()
 
 const asyncHandler = require('express-async-handler')
+const { requireAuth } = require('../../utils/auth')
+
 const { Category, Exercise, ExerciseCategory } = require('../../db/models')
 
 //GET /api/categories
@@ -27,21 +29,10 @@ router.get(
 				return {
 					[id]: {
 						label,
-						exercises: Object.assign(
-							{},
-							...ExerciseCategories.map(exercise => {
-								const { id, label, description, quantity, met, image } = exercise.Exercise
-								return {
-									[id]: {
-										label,
-										description,
-										quantity,
-										met: parseFloat(met),
-										image,
-									},
-								}
-							})
-						),
+						exercises: ExerciseCategories.map(exercise => {
+							const { id } = exercise.Exercise
+							return id
+						}),
 					},
 				}
 			})
@@ -55,6 +46,7 @@ router.get(
 )
 router.post(
 	'/',
+	requireAuth,
 	asyncHandler(async (req, res) => {
 		const { label } = req.body
 		const category = await Category.create({ label })

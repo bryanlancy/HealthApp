@@ -4,14 +4,14 @@ import { newExercise } from '../../../store/exercise'
 
 export default function NewExercise() {
 	const dispatch = useDispatch()
-	const categories = useSelector(state => state.exercise)
+	const { categories, exercises } = useSelector(state => state.exercise)
 
 	const [newCategory, setNewCategory] = useState('')
-	const [quantity, setQuantity] = useState('time')
-	const [category, setCategory] = useState(Object.keys(categories)[0] || 'new')
-	const [met, setMet] = useState(0.0)
+	const [quantity, setQuantity] = useState('reps')
+	const [category, setCategory] = useState('new')
+	const [met, setMet] = useState(5.0)
 	const [duration, setDuration] = useState(0)
-	const [label, setLabel] = useState('')
+	const [label, setLabel] = useState('Super Pushup')
 	const [description, setDescription] = useState('')
 	const [image, setImage] = useState('')
 
@@ -51,6 +51,9 @@ export default function NewExercise() {
 	}
 
 	const categoryOptions = useMemo(() => {
+		if (categories) {
+			setCategory(Object.keys(categories)[0])
+		}
 		let list = []
 		for (const id in categories) {
 			const { label } = categories[id]

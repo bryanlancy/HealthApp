@@ -10,12 +10,12 @@ const loadWorkouts = categories => {
 }
 
 export const addWorkout = workout => async dispatch => {
-	console.log(workout)
 	const res = await csrfFetch('/api/workouts', {
 		method: 'POST',
 		body: JSON.stringify({ ...workout }),
 	})
 	if (res.ok) {
+		//! ADD TO REDUX STORE!!
 		const data = await res.json()
 		return { ok: true }
 	} else return { ok: false }
