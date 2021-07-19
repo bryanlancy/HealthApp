@@ -1,5 +1,15 @@
 .workouts {
 	padding: 8px;
+	&__header {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-end;
+	}
+	&__sort {
+		& :is(select, i) {
+			margin-left: 4px;
+		}
+	}
 	&__list {
 		--columns: 1;
 		display: grid;
@@ -27,6 +37,7 @@
 	}
 	&__stats {
 		width: 35%;
+		max-width: 150px;
 		margin-top: 8px;
 	}
 
