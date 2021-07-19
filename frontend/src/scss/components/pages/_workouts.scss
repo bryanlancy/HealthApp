@@ -26,10 +26,16 @@
 				border: none;
 				outline: none;
 			}
+			&:hover {
+				cursor: pointer;
+			}
 		}
 		& i {
 			border-radius: 48px;
 			box-shadow: $neuBox;
+			&:hover {
+				cursor: pointer;
+			}
 		}
 	}
 	&__list {

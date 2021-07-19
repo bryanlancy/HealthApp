@@ -1,4 +1,5 @@
 //! SPLIT INTO STEPS TO SIMPLIFY FORM
+//! ADD VALIDATION TO UI
 
 import { useMemo, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'

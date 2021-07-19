@@ -1,4 +1,5 @@
 //!! Add ALL to category dropdown
+//! ADD VALIDATION TO UI
 
 import { useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'

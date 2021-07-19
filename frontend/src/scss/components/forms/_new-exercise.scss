@@ -24,6 +24,11 @@
 			border-bottom: 1px solid #333;
 			outline: none;
 		}
+		& select {
+			&:hover {
+				cursor: pointer;
+			}
+		}
 		& textarea {
 			border-left: 1px solid #333;
 			resize: none;
@@ -33,11 +38,18 @@
 		}
 	}
 	& button {
-		box-shadow: $neuBox;
-		border-radius: 8px;
 		padding: 4px;
-		background-color: #33dd3355;
+
+		border-radius: 8px;
 		border: none;
+
+		box-shadow: $neuBox;
+		background-color: #33dd3355;
+		&:hover {
+			background-color: #33dd3377;
+
+			cursor: pointer;
+		}
 	}
 }
 
