@@ -1,0 +1,94 @@
+.workouts {
+	padding: 8px;
+
+	&__header {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-end;
+	}
+	&__sort {
+		& :is(select, i) {
+			margin-left: 16px;
+		}
+		& select {
+			appearance: none;
+			border: none;
+			padding: 4px;
+
+			box-shadow: $neuBox;
+
+			text-align-last: center;
+			text-align: center;
+			& option {
+				background-color: #ddd;
+			}
+			&:focus {
+				border: none;
+				outline: none;
+			}
+			&:hover {
+				cursor: pointer;
+			}
+		}
+		& i {
+			border-radius: 48px;
+			box-shadow: $neuBox;
+			&:hover {
+				cursor: pointer;
+			}
+		}
+	}
+	&__list {
+		--columns: 1;
+		display: grid;
+		grid-template-columns: repeat(var(--columns), 1fr);
+		gap: 16px;
+
+		margin-top: 16px;
+	}
+}
+.workout {
+	border-radius: 8px;
+	padding: 8px;
+
+	box-shadow: $neuBox;
+
+	&__row {
+		display: flex;
+		justify-content: space-between;
+
+		& .fa-fire {
+			--fa-primary-color: orange;
+			--fa-secondary-color: red;
+		}
+	}
+	&__stats {
+		width: 35%;
+		min-width: 125px;
+		max-width: 150px;
+		margin-top: 8px;
+	}
+
+	&__exercise {
+		&:hover {
+			cursor: pointer;
+			text-decoration: underline;
+		}
+	}
+}
+
+@include tablet {
+	.workouts {
+		&__list {
+			--columns: 2;
+		}
+	}
+}
+
+@include desktop {
+	.workouts {
+		&__list {
+			--columns: 3;
+		}
+	}
+}

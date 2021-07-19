@@ -1,15 +1,18 @@
+//! SPLIT INTO STEPS TO SIMPLIFY FORM
+//! ADD VALIDATION TO UI
+
 import { useMemo, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { newExercise } from '../../../store/exercise'
 
 export default function NewExercise() {
 	const dispatch = useDispatch()
-	const categories = useSelector(state => state.exercise)
+	const { categories, exercises } = useSelector(state => state.exercise)
 
 	const [newCategory, setNewCategory] = useState('')
-	const [quantity, setQuantity] = useState('time')
-	const [category, setCategory] = useState(Object.keys(categories)[0] || 'new')
-	const [met, setMet] = useState(0.0)
+	const [quantity, setQuantity] = useState('reps')
+	const [category, setCategory] = useState('new')
+	const [met, setMet] = useState(0)
 	const [duration, setDuration] = useState(0)
 	const [label, setLabel] = useState('')
 	const [description, setDescription] = useState('')
@@ -51,6 +54,9 @@ export default function NewExercise() {
 	}
 
 	const categoryOptions = useMemo(() => {
+		if (categories) {
+			setCategory(Object.keys(categories)[0])
+		}
 		let list = []
 		for (const id in categories) {
 			const { label } = categories[id]
@@ -83,11 +89,11 @@ export default function NewExercise() {
 			)}
 			<label htmlFor="">
 				Label
-				<input type="text" value={label} onChange={e => setLabel(e.target.value)} required />
+				<input type="text" value={label} onChange={e => setLabel(e.target.value)} placeholder="Name of exercise" required />
 			</label>
 			<label htmlFor="">
 				MET
-				<input type="number" value={met} onChange={e => setMet(e.target.value)} step=".1" />
+				<input type="number" value={met} onChange={e => setMet(e.target.value)} />
 			</label>
 			<label htmlFor="">
 				Quantity

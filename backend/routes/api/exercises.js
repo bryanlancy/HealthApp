@@ -18,13 +18,14 @@ router.get(
 		exercises = Object.assign(
 			{},
 			...exercises.map(exercise => {
-				const { id, label, description, met, image } = exercise.Exercise
+				const { id, label, description, met, image, quantity } = exercise.Exercise
 				return {
 					[id]: {
 						label,
 						description,
 						met: parseFloat(met),
 						image,
+						quantity,
 					},
 				}
 			})
@@ -38,6 +39,7 @@ router.post(
 	'/',
 	asyncHandler(async (req, res) => {
 		const { categoryId, label, description, quantity, met, duration, image } = req.body
+		console.log(categoryId)
 		const exercise = await Exercise.create({
 			label,
 			description,

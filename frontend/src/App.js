@@ -6,7 +6,8 @@ import * as sessionActions from './store/session'
 import { populateExercise } from './store/exercise'
 
 import Navigation from './components/Navigation'
-import { LoginForm, SignupForm, NewExercise, NewWorkout } from './components/forms'
+import { Login, Signup, NewExercise, NewWorkout } from './components/forms'
+import TestWorkout from './components/TestWorkouts'
 import ProtectedRoute from './components/ProtectedRoute'
 
 function App() {
@@ -29,12 +30,14 @@ function App() {
 			<Navigation isLoaded={isLoaded} />
 			{isLoaded && (
 				<Switch>
-					<ProtectedRoute exact path="/"></ProtectedRoute>
+					<ProtectedRoute exact path="/">
+						<TestWorkout />
+					</ProtectedRoute>
 					<Route path="/login">
-						<LoginForm />
+						<Login />
 					</Route>
 					<Route path="/signup">
-						<SignupForm />
+						<Signup />
 					</Route>
 					<ProtectedRoute path="/new-exercise">
 						<NewExercise />

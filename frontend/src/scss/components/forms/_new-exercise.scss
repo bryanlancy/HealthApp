@@ -1,0 +1,60 @@
+:is(.new-exercise-form, .new-workout-form) {
+	display: flex;
+	flex-direction: column;
+
+	padding: 16px;
+	margin: 16px;
+
+	box-shadow: $neuBox;
+
+	& :not(:first-child) {
+		margin-top: 16px;
+	}
+
+	& label {
+		display: flex;
+		justify-content: space-between;
+		min-width: 275px;
+
+		& * {
+			min-width: 150px;
+			width: 60%;
+			border: none;
+			background: none;
+			border-bottom: 1px solid #333;
+			outline: none;
+		}
+		& select {
+			&:hover {
+				cursor: pointer;
+			}
+		}
+		& textarea {
+			border-left: 1px solid #333;
+			resize: none;
+		}
+		& option {
+			background-color: #ddd;
+		}
+	}
+	& button {
+		padding: 4px;
+
+		border-radius: 8px;
+		border: none;
+
+		box-shadow: $neuBox;
+		background-color: #33dd3355;
+		&:hover {
+			background-color: #33dd3377;
+
+			cursor: pointer;
+		}
+	}
+}
+
+@include desktop {
+	.new-workout-form {
+		max-width: 500px;
+	}
+}

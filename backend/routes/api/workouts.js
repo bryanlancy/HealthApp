@@ -9,14 +9,13 @@ router.get(
 	'/',
 	requireAuth,
 	asyncHandler(async (req, res) => {
-		const { userId } = req.query
-		console.log(req.user)
+		const { id: userId } = req.user
 		const weight = 150
 		let workouts = await Workout.findAll({ where: { userId: userId || null }, include: { model: Exercise } })
 		workouts = Object.assign(
 			{},
 			...workouts.map(workout => {
-				const { id, reps } = workout
+				const { id, reps, createdAt } = workout
 				const { id: exerciseId, label, met, duration } = workout.Exercise
 				return {
 					[id]: {
@@ -26,6 +25,7 @@ router.get(
 							id: exerciseId,
 							label,
 						},
+						date: createdAt,
 					},
 				}
 			})
@@ -37,8 +37,10 @@ router.get(
 // POST /api/workouts
 router.post(
 	'/',
+	requireAuth,
 	asyncHandler(async (req, res) => {
-		const { exerciseId, userId, reps } = req.body
+		const { id: userId } = req.user
+		const { exerciseId, reps } = req.body
 		const workout = await Workout.create({ exerciseId, userId, reps })
 		return res.json({ workout })
 	})

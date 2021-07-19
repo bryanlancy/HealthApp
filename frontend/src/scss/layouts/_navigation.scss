@@ -1,6 +1,9 @@
 .navigation {
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 
-	border: 1px solid blue;
+	height: $navHeight;
+
+	padding: 8px;
 }
