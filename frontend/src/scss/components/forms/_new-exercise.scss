@@ -2,10 +2,13 @@
 	display: flex;
 	flex-direction: column;
 
-	padding: 8px;
+	padding: 16px;
+	margin: 16px;
+
+	box-shadow: $neuBox;
 
 	& :not(:first-child) {
-		margin-top: 8px;
+		margin-top: 16px;
 	}
 
 	& label {
@@ -16,7 +19,25 @@
 		& * {
 			min-width: 150px;
 			width: 60%;
+			border: none;
+			background: none;
+			border-bottom: 1px solid #333;
+			outline: none;
 		}
+		& textarea {
+			border-left: 1px solid #333;
+			resize: none;
+		}
+		& option {
+			background-color: #ddd;
+		}
+	}
+	& button {
+		box-shadow: $neuBox;
+		border-radius: 8px;
+		padding: 4px;
+		background-color: #33dd3355;
+		border: none;
 	}
 }
 

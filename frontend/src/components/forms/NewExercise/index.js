@@ -1,3 +1,5 @@
+//! SPLIT INTO STEPS TO SIMPLIFY FORM
+
 import { useMemo, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { newExercise } from '../../../store/exercise'
@@ -90,7 +92,7 @@ export default function NewExercise() {
 			</label>
 			<label htmlFor="">
 				MET
-				<input type="number" value={met} onChange={e => setMet(e.target.value)} step=".1" />
+				<input type="number" value={met} onChange={e => setMet(e.target.value)} />
 			</label>
 			<label htmlFor="">
 				Quantity

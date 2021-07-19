@@ -1,8 +1,10 @@
 $tablet-width: 768px;
 $desktop-width: 1024px;
 
-$themeColor: #b50000;
-$themeColorLight: #b5000051;
+$softShadow: 0 0 3px 3px #dddddd;
+$boxShadow: 4px 4px 8px #00000022;
+$boxShadowInset: -4px -4px 8px #ffffff99;
+$neuBox: $softShadow, $boxShadow, $boxShadowInset;
 
 $navHeight: 48px;
 
