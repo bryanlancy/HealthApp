@@ -1,0 +1,35 @@
+.exercise {
+	box-shadow: $neuBox;
+	padding: 8px;
+	margin-top: 8px;
+
+	display: flex;
+	justify-content: space-between;
+
+	& > * {
+		width: 50%;
+	}
+	&__text {
+		padding: 16px;
+		border-radius: 8px;
+		box-shadow: $neuBoxRev;
+	}
+
+	&__details {
+		display: flex;
+		flex-direction: column;
+
+		& label {
+			display: flex;
+			justify-content: space-between;
+			& > * {
+				width: 55%;
+				min-width: 120px;
+				border: none;
+				background: none;
+				border-bottom: 1px solid #333;
+				outline: none;
+			}
+		}
+	}
+}

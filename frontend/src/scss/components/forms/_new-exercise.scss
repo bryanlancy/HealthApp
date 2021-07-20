@@ -54,7 +54,7 @@
 }
 
 @include desktop {
-	.new-workout-form {
+	:is(.new-exercise-form, .new-workout-form) {
 		max-width: 500px;
 	}
 }

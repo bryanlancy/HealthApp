@@ -1,5 +1,6 @@
 //! SPLIT INTO STEPS TO SIMPLIFY FORM
 //! ADD VALIDATION TO UI
+//! Prevent repeat exercises
 
 import { useMemo, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
@@ -7,7 +8,7 @@ import { newExercise } from '../../../store/exercise'
 
 export default function NewExercise() {
 	const dispatch = useDispatch()
-	const { categories, exercises } = useSelector(state => state.exercise)
+	const { categories } = useSelector(state => state.exercise)
 
 	const [newCategory, setNewCategory] = useState('')
 	const [quantity, setQuantity] = useState('reps')

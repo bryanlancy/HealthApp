@@ -7,6 +7,7 @@ import { populateExercise } from './store/exercise'
 
 import Navigation from './components/Navigation'
 import { Login, Signup, NewExercise, NewWorkout } from './components/forms'
+import { ExerciseDetailPage } from './components/pages'
 import TestWorkout from './components/TestWorkouts'
 import ProtectedRoute from './components/ProtectedRoute'
 
@@ -39,6 +40,9 @@ function App() {
 					<Route path="/signup">
 						<Signup />
 					</Route>
+					<ProtectedRoute path="/exercise/:id">
+						<ExerciseDetailPage />
+					</ProtectedRoute>
 					<ProtectedRoute path="/new-exercise">
 						<NewExercise />
 					</ProtectedRoute>
