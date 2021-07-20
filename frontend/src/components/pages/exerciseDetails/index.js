@@ -9,23 +9,36 @@ export default function ExerciseDetailPage() {
 	const exercise = useMemo(() => {
 		if (exercises) {
 			const { label, description, met, image, quantity } = exercises[id]
-			console.log(exercises[id])
 			return (
-				<>
-					<p>{label}</p>
-					<p>{description}</p>
-					<p>{met}</p>
-					<p>{image}</p>
-					<p>{quantity}</p>
-				</>
+				<div className="exercise">
+					<img src={image} alt={label} />
+
+					<div className="exercise__text">
+						<h2>{label}</h2>
+						<div className="exercise__details">
+							<label>
+								MET
+								<input value={met} />
+							</label>
+							<label>
+								Counting Unit
+								<input value={quantity} />
+							</label>
+							<label>
+								Description
+								<textarea value={description}></textarea>
+							</label>
+						</div>
+					</div>
+				</div>
 			)
 		}
 	}, [exercises, id])
 
 	return (
-		<>
-			<h1>Exercise Detail Page</h1>
+		<div className="page">
+			<h1>Exercise Details</h1>
 			{exercise}
-		</>
+		</div>
 	)
 }

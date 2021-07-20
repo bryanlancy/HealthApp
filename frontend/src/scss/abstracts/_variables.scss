@@ -2,9 +2,11 @@ $tablet-width: 768px;
 $desktop-width: 1024px;
 
 $softShadow: 0 0 3px 3px #dddddd;
-$boxShadow: 4px 4px 8px #00000022;
-$boxShadowInset: -4px -4px 8px #ffffff99;
-$neuBox: $softShadow, $boxShadow, $boxShadowInset;
+$boxShadowDark: 4px 4px 8px #00000022;
+$boxShadowLight: -4px -4px 8px #ffffff99;
+$neuBox: $softShadow, $boxShadowDark, $boxShadowLight;
+
+$neuBoxRev: $softShadow inset, $boxShadowDark inset, $boxShadowLight inset;
 
 $navHeight: 48px;
 
