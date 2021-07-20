@@ -1,4 +1,8 @@
-import { useEffect, useMemo, useState } from 'react'
+//! Add ability to update/remove exercise
+//! What about workout associated with exercise?
+//! style image (size and aspect)
+
+import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 
