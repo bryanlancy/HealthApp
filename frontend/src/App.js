@@ -7,8 +7,7 @@ import { populateExercise } from './store/exercise'
 
 import Navigation from './components/Navigation'
 import { Login, Signup, NewExercise, NewWorkout } from './components/forms'
-import { ExerciseDetailPage } from './components/pages'
-import TestWorkout from './components/TestWorkouts'
+import { HomePage, ExerciseDetailPage } from './components/pages'
 import ProtectedRoute from './components/ProtectedRoute'
 
 function App() {
@@ -32,7 +31,7 @@ function App() {
 			{isLoaded && (
 				<Switch>
 					<ProtectedRoute exact path="/">
-						<TestWorkout />
+						<HomePage />
 					</ProtectedRoute>
 					<Route path="/login">
 						<Login />
