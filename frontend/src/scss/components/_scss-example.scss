@@ -1,0 +1,13 @@
+.scss-example {
+	&__neubox {
+		margin-top: 32px;
+		box-shadow: $neuBox;
+
+		&:hover {
+			border: 1px solid green;
+		}
+		&--red {
+			border: 1px solid red;
+		}
+	}
+}
