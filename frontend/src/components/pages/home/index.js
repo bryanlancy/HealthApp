@@ -7,7 +7,7 @@ export default function HomePage() {
 			<WorkoutSummary preset="day" />
 			<WorkoutSummary preset="week" />
 			<WorkoutSummary preset="month" />
-			<WorkoutSummary days={14} title="Last 14 days" />
+			<WorkoutSummary days={14} />
 			<TestWorkouts />
 		</div>
 	)
