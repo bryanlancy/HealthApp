@@ -1,63 +1,65 @@
-import React, { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { Route, Switch } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { Route, Switch } from 'react-router-dom';
 
-import * as sessionActions from './store/session'
-import { populateExercise } from './store/exercise'
+import * as sessionActions from './store/session';
+import { populateExercise } from './store/exercise';
 
-import Navigation from './components/Navigation'
-import { Login, Signup, NewExercise, NewWorkout } from './components/forms'
-import { HomePage, ExerciseDetailPage } from './components/pages'
-import ProtectedRoute from './components/ProtectedRoute'
+import Navigation from './components/Navigation';
+import { Login, Signup, NewExercise, NewWorkout } from './components/forms';
+import { HomePage, ExerciseDetailPage, SettingsPage } from './components/pages';
+import ProtectedRoute from './components/ProtectedRoute';
 
-import ScssExample from './components/ScssExample'
-
+import ScssExample from './components/ScssExample';
 
 function App() {
-	const dispatch = useDispatch()
-	const [isLoaded, setIsLoaded] = useState(false)
+  const dispatch = useDispatch();
+  const [isLoaded, setIsLoaded] = useState(false);
 
-	useEffect(() => {
-		dispatch(sessionActions.restoreUser())
-			.then(() => {
-				//CHANGE TO RETURN PROMISE HERE
-				dispatch(populateExercise())
-			})
-			.then(() => {
-				setIsLoaded(true)
-			})
-	}, [dispatch])
+  useEffect(() => {
+    dispatch(sessionActions.restoreUser())
+      .then(() => {
+        //CHANGE TO RETURN PROMISE HERE
+        dispatch(populateExercise());
+      })
+      .then(() => {
+        setIsLoaded(true);
+      });
+  }, [dispatch]);
 
-	return (
-		<>
-			<Navigation isLoaded={isLoaded} />
-			{isLoaded && (
-				<Switch>
-					<ProtectedRoute exact path="/">
-						<HomePage />
-					</ProtectedRoute>
-					<Route path="/login">
-						<Login />
-					</Route>
-					<Route path="/signup">
-						<Signup />
-					</Route>
-					<ProtectedRoute path="/exercise/:id">
-						<ExerciseDetailPage />
-					</ProtectedRoute>
-					<ProtectedRoute path="/new-exercise">
-						<NewExercise />
-					</ProtectedRoute>
-					<ProtectedRoute path="/new-workout">
-						<NewWorkout />
-					</ProtectedRoute>
-					<Route path="/scss-example">
-						<ScssExample />
-					</Route>
-				</Switch>
-			)}
-		</>
-	)
+  return (
+    <>
+      <Navigation isLoaded={isLoaded} />
+      {isLoaded && (
+        <Switch>
+          <ProtectedRoute exact path="/">
+            <HomePage />
+          </ProtectedRoute>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/signup">
+            <Signup />
+          </Route>
+          <ProtectedRoute path="/exercise/:id">
+            <ExerciseDetailPage />
+          </ProtectedRoute>
+          <ProtectedRoute path="/new-exercise">
+            <NewExercise />
+          </ProtectedRoute>
+          <ProtectedRoute path="/new-workout">
+            <NewWorkout />
+          </ProtectedRoute>
+          <ProtectedRoute path="/settings">
+            <SettingsPage />
+          </ProtectedRoute>
+          <Route path="/scss-example">
+            <ScssExample />
+          </Route>
+        </Switch>
+      )}
+    </>
+  );
 }
 
-export default App
+export default App;
