@@ -1,4 +1,5 @@
-import HomePage from './home'
-import ExerciseDetailPage from './exerciseDetails'
+import HomePage from './home';
+import ExerciseDetailPage from './exerciseDetails';
+import SettingsPage from './SettingsPage';
 
-export { HomePage, ExerciseDetailPage }
+export { HomePage, ExerciseDetailPage, SettingsPage };

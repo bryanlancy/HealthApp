@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import * as sessionActions from "../../store/session";
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import * as sessionActions from '../../store/session';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -18,9 +18,9 @@ function ProfileButton({ user }) {
       setShowMenu(false);
     };
 
-    document.addEventListener("click", closeMenu);
+    document.addEventListener('click', closeMenu);
 
-    return () => document.removeEventListener("click", closeMenu);
+    return () => document.removeEventListener('click', closeMenu);
   }, [showMenu]);
 
   const logout = (e) => {
@@ -37,6 +37,9 @@ function ProfileButton({ user }) {
         <ul className="profile-dropdown">
           <li>{user.username}</li>
           <li>{user.email}</li>
+          <li>
+            <a href="/settings"></a>Settings
+          </li>
           <li>
             <button onClick={logout}>Log Out</button>
           </li>
