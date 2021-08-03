@@ -3,10 +3,10 @@ import { csrfFetch } from './csrf'
 const LOAD_WORKOUTS = 'workouts/LOAD_WORKOUTS'
 const SET_SORTED = 'workouts/SET_SORTED'
 
-const loadWorkouts = workouts => {
+const loadWorkouts = (workouts, sortedWorkouts) => {
 	return {
 		type: LOAD_WORKOUTS,
-		payload: { workouts },
+		payload: { workouts, sortedWorkouts },
 	}
 }
 
@@ -35,9 +35,16 @@ export const updateSorted = (arr, prop) => async dispatch => {
 
 export const populateWorkouts = () => async dispatch => {
 	const res = await csrfFetch('/api/workouts')
+
+	let sortedWorkouts = { default: [1, 2, 3, 4, 5] }
+
+
+
+
+
 	if (res.ok) {
 		const { workouts } = await res.json()
-		dispatch(loadWorkouts(workouts))
+		dispatch(loadWorkouts(workouts, sortedWorkouts))
 	}
 }
 const initialState = { workouts: {}, sortedWorkouts: {} }

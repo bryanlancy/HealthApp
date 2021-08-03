@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 
 import { ResponsiveContainer, AreaChart, YAxis, XAxis, CartesianGrid, Tooltip, Area } from 'recharts'
 
-export default function WorkoutSummary({ preset, days, title }) {
+export default function WorkoutChart({ preset, days, title }) {
 	const [_days, _setDays] = useState(days || 1)
 	const [_title, _setTitle] = useState(title ? title : days ? `Last ${days} days` : "Today's stats")
 
@@ -33,7 +33,7 @@ export default function WorkoutSummary({ preset, days, title }) {
 	}, [preset, days, title])
 
 	useEffect(() => {
-		function formatDate(date) {}
+		function formatDate(date) { }
 
 		if (sortedList) {
 			setChartData(
