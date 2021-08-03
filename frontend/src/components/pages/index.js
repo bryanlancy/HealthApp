@@ -1,3 +1,4 @@
+import HomePage from './home'
 import ExerciseDetailPage from './exerciseDetails'
 
-export { ExerciseDetailPage }
+export { HomePage, ExerciseDetailPage }

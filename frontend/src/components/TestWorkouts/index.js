@@ -1,12 +1,12 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { populateWorkouts } from '../../store/workouts'
+import { updateSorted, populateWorkouts } from '../../store/workouts'
 
 export default function TestWorkout() {
 	const dispatch = useDispatch()
 	const history = useHistory()
-	const workouts = useSelector(state => state.workouts)
+	const { workouts, sortedWorkouts2 } = useSelector(state => state.workouts)
 	const [sortedWorkouts, setSortedWorkouts] = useState([])
 	const [sortInput, setSortInput] = useState('none')
 	const [sortAsc, setSortAsc] = useState(false)
@@ -65,7 +65,9 @@ export default function TestWorkout() {
 		}
 		const workoutIds = Object.keys(workouts).map(x => parseInt(x))
 		if (workoutIds.length) {
-			setSortedWorkouts(sortInput !== 'none' ? sortWorkouts(workoutIds, sortInput) : workoutIds)
+			const sortedIds = sortWorkouts(workoutIds, sortInput)
+			dispatch(updateSorted(sortedIds, sortInput))
+			setSortedWorkouts(sortInput !== 'none' ? sortedIds : workoutIds)
 		}
 	}, [workouts, sortInput, sortAsc])
 

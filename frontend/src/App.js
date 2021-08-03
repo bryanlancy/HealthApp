@@ -7,9 +7,11 @@ import { populateExercise } from './store/exercise'
 
 import Navigation from './components/Navigation'
 import { Login, Signup, NewExercise, NewWorkout } from './components/forms'
-import { ExerciseDetailPage } from './components/pages'
-import TestWorkout from './components/TestWorkouts'
+import { HomePage, ExerciseDetailPage } from './components/pages'
 import ProtectedRoute from './components/ProtectedRoute'
+
+import ScssExample from './components/ScssExample'
+
 
 function App() {
 	const dispatch = useDispatch()
@@ -32,7 +34,7 @@ function App() {
 			{isLoaded && (
 				<Switch>
 					<ProtectedRoute exact path="/">
-						<TestWorkout />
+						<HomePage />
 					</ProtectedRoute>
 					<Route path="/login">
 						<Login />
@@ -49,6 +51,9 @@ function App() {
 					<ProtectedRoute path="/new-workout">
 						<NewWorkout />
 					</ProtectedRoute>
+					<Route path="/scss-example">
+						<ScssExample />
+					</Route>
 				</Switch>
 			)}
 		</>
