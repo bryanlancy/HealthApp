@@ -1,4 +1,4 @@
-# Health App
+# Health App <a href="https://github.com/bryanlancy/HealthApp/wiki" style="font-size: 18px">Explore the docs »</a>
 
 1. <a href="#what-is-health-app">About</a>
 1. <a href="#features">Features</a>
