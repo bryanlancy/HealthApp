@@ -16,10 +16,10 @@ export default function HomePage() {
 			<h1>Home</h1>
 			<WorkoutChart preset="day" />
 			{sorted && <WorkoutGroupCreator allWorkouts={sorted} />}
-			{/* <WorkoutChart preset="week" />
+			<WorkoutChart preset="week" />
 			<WorkoutChart preset="month" />
 			<WorkoutChart days={14} />
-			<TestWorkouts /> */}
+			<TestWorkouts />
 		</div>
 	)
 }
