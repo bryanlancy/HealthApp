@@ -2,7 +2,8 @@
 	"name": "healthapp",
 	"version": "1.0.0",
 	"scripts": {
-		"install": "npm --prefix backend install backend && npm --prefix frontend install frontend"
+		"install": "npm --prefix backend install backend && npm --prefix frontend install frontend",
+		"start": "(cd backend && npm start) & (cd frontend && npm start)"
 	},
 	"repository": {
 		"type": "git",
