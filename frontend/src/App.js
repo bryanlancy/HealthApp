@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom'
 
 import * as sessionActions from './store/session'
 import { populateExercise } from './store/exercise'
+import { populateWorkouts } from './store/workouts'
 
 import Navigation from './components/Navigation'
 import { Login, Signup, NewExercise, NewWorkout } from './components/forms'
@@ -22,6 +23,9 @@ function App() {
 			.then(() => {
 				//CHANGE TO RETURN PROMISE HERE
 				dispatch(populateExercise())
+			})
+			.then(() => {
+				dispatch(populateWorkouts())
 			})
 			.then(() => {
 				setIsLoaded(true)
