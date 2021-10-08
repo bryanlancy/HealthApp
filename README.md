@@ -1,4 +1,4 @@
-# Health App <a href="https://github.com/bryanlancy/HealthApp/wiki" style="font-size: 18px">Explore the docs »</a>
+# Health App
 
 1. <a href="#what-is-health-app">About</a>
 1. <a href="#features">Features</a>
@@ -14,11 +14,14 @@
         Health App<sup><a href="#sup1">1</a></sup> aims to provide an easy way to streamline a fine control on all aspects of your health. Combining the control of various metrics such as dieting habits with workout routines, users can make informed decisions about dieting that will compliment their exercise habits, and vice versa.
     </p>
 </div>
+
 <div>
     <p>
         Health App<sup><a href="#sup1">1</a></sup> is designed with <a href="https://wikipedia.org/wiki/Free_and_open-source_software">FOSS</a> in mind, with an added focus on staying free of external dependencies. So with little and trivial setup a user can have an offline and locally hosted version of the application.
     </p>
 </div>
+
+<a href="https://github.com/bryanlancy/HealthApp/wiki" style="font-size: 18px">Explore the docs »</a>
 
 ## Features
 
