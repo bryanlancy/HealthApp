@@ -3,9 +3,11 @@ import { login } from '../../store/session'
 import { useDispatch, useSelector } from 'react-redux'
 
 export default function Login({ userId, cancel }) {
+
     const dispatch = useDispatch()
     const allUsers = useSelector(state => state.session.users)
-    const [credential, setCredential] = useState(userId ? allUsers[userId].username : '')
+    const { [userId]: user } = allUsers
+    const [credential, setCredential] = useState(user ? user.username : '')
     const [password, setPassword] = useState('')
     const [errors, setErrors] = useState([])
 
@@ -25,19 +27,21 @@ export default function Login({ userId, cancel }) {
     }
 
     let usernameEmail
-    if (userId) {
-        console.log(userId)
-        usernameEmail = (<p>Welcome back, {credential}</p>)
+    if (user) {
+        usernameEmail = (
+            <h2>Welcome back, {credential}</h2>
+        )
     } else {
         usernameEmail = (
-            <label>
-                Username or Email
+            <div>
+                <label>
+                    Username or Email
+                </label >
                 <input type="text" value={credential} onChange={e => setCredential(e.target.value)
                 } required />
-            </label >)
+            </div>
+        )
     }
-
-
 
     return (
         < form form onSubmit={handleSubmit} className="login-form" >
@@ -46,13 +50,23 @@ export default function Login({ userId, cancel }) {
                     <li key={idx}>{error}</li>
                 ))}
             </ul>
-            {usernameEmail}
-            <label>
-                Password
-                <input type="password" value={password} onChange={e => setPassword(e.target.value)} required />
-            </label>
-            <button type="submit">Log In</button>
-            <button onClick={handleCancel}>Cancel</button>
+
+            {user && <div className="login-form__avatar"><img src={`images/avatars/${user.avatar}`} alt="avatar" /></div>}
+
+            <div className="login-form__controls">
+
+                <button onClick={handleCancel} className="login-form__button login-form__button--cancel"><i className="fal fa-long-arrow-left"></i></button>
+                <div className="login-form__fields">
+                    {usernameEmail}
+                    <div>
+                        <label>
+                            Password
+                        </label>
+                        <input type="password" value={password} onChange={e => setPassword(e.target.value)} required />
+                    </div>
+                </div>
+                <button type="submit" className="login-form__button login-form__button--confirm"><i className="fal fa-check"></i></button>
+            </div>
         </form >
     )
 }
