@@ -1,6 +1,6 @@
-import Login from './Login'
-import Signup from './Signup'
-import NewExercise from './NewExercise'
-import NewWorkout from './NewWorkout'
+import LoginForm from './Login.js'
+import SignupForm from './Signup.js'
+import NewExerciseForm from './NewExercise.js'
+import NewWorkoutForm from './NewWorkout.js'
 
-export { Login, Signup, NewExercise, NewWorkout }
+export { LoginForm, SignupForm, NewExerciseForm, NewWorkoutForm }

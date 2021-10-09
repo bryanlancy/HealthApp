@@ -7,8 +7,8 @@ import { populateExercise } from './store/exercise'
 import { populateWorkouts } from './store/workouts'
 
 import Navigation from './components/Navigation'
-import { Login, Signup, NewExercise, NewWorkout } from './components/forms'
-import { HomePage, ExerciseDetailPage } from './components/pages'
+
+import { HomePage, ExerciseDetailPage, LoginPage } from './components/pages'
 import ProtectedRoute from './components/ProtectedRoute'
 
 import ScssExample from './components/ScssExample'
@@ -41,19 +41,19 @@ function App() {
 						<HomePage />
 					</ProtectedRoute>
 					<Route path="/login">
-						<Login />
+						<LoginPage />
 					</Route>
 					<Route path="/signup">
-						<Signup />
+						{/* <Signup /> */}
 					</Route>
 					<ProtectedRoute path="/exercise/:id">
 						<ExerciseDetailPage />
 					</ProtectedRoute>
 					<ProtectedRoute path="/new-exercise">
-						<NewExercise />
+						{/* <NewExercise /> */}
 					</ProtectedRoute>
 					<ProtectedRoute path="/new-workout">
-						<NewWorkout />
+						{/* <NewWorkout /> */}
 					</ProtectedRoute>
 					<Route path="/scss-example">
 						<ScssExample />

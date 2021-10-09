@@ -4,7 +4,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { addWorkout } from '../../../store/workouts'
+import { addWorkout } from '../../store/workouts'
 
 export default function NewWorkout() {
 	const { categories, exercises } = useSelector(state => state.exercise)

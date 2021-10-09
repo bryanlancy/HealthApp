@@ -4,7 +4,7 @@
 
 import { useMemo, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { newExercise } from '../../../store/exercise'
+import { newExercise } from '../../store/exercise'
 
 export default function NewExercise() {
 	const dispatch = useDispatch()

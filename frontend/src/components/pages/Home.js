@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux'
-import TestWorkouts from '../../TestWorkouts'
-import WorkoutChart from '../../WorkoutChart'
+import TestWorkouts from '../TestWorkouts'
+import WorkoutChart from '../WorkoutChart'
 
-import WorkoutGroupCreator from '../../WorkoutGroupCreator'
+import WorkoutGroupCreator from '../WorkoutGroupCreator'
 
 
 export default function HomePage() {

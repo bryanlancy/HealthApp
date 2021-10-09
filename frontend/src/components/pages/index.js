@@ -1,4 +1,5 @@
-import HomePage from './home'
-import ExerciseDetailPage from './exerciseDetails'
+import HomePage from './Home.js'
+import ExerciseDetailPage from './ExerciseDetails.js'
+import LoginPage from './Login.js'
 
-export { HomePage, ExerciseDetailPage }
+export { HomePage, ExerciseDetailPage, LoginPage }
