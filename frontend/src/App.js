@@ -8,7 +8,7 @@ import { populateWorkouts } from './store/workouts'
 
 import Navigation from './components/Navigation'
 
-import { HomePage, ExerciseDetailPage, LoginPage } from './components/pages'
+import { HomePage, ExerciseDetailPage, LoginPage, SignupPage, NewExercisePage, NewWorkoutPage } from './components/pages'
 import ProtectedRoute from './components/ProtectedRoute'
 
 import ScssExample from './components/ScssExample'
@@ -23,7 +23,6 @@ function App() {
 	useEffect(() => {
 		dispatch(sessionActions.restoreUser())
 			.then(() => {
-				//CHANGE TO RETURN PROMISE HERE
 				dispatch(populateExercise())
 			})
 			.then(() => {
@@ -46,16 +45,16 @@ function App() {
 						<LoginPage />
 					</Route>
 					<Route path="/signup">
-						{/* <Signup /> */}
+						<SignupPage />
 					</Route>
 					<ProtectedRoute path="/exercise/:id">
 						<ExerciseDetailPage />
 					</ProtectedRoute>
 					<ProtectedRoute path="/new-exercise">
-						{/* <NewExercise /> */}
+						<NewExercisePage />
 					</ProtectedRoute>
 					<ProtectedRoute path="/new-workout">
-						{/* <NewWorkout /> */}
+						<NewWorkoutPage />
 					</ProtectedRoute>
 					<Route path="/scss-example">
 						<ScssExample />

@@ -1,0 +1,21 @@
+.site-info {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 35%;
+
+	img {
+		width: 200px;
+	}
+	h1 {
+		margin-top: 24px;
+	}
+	a {
+		color: $textPrimary;
+		text-decoration: none;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}

@@ -33,40 +33,42 @@ export default function Login({ userId, cancel }) {
         )
     } else {
         usernameEmail = (
-            <div>
-                <label>
-                    Username or Email
-                </label >
-                <input type="text" value={credential} onChange={e => setCredential(e.target.value)
-                } required />
-            </div>
+            <>
+                <h2>Welcome!</h2>
+                <div>
+                    <label>
+                        Username or Email
+                    </label >
+                    <input type="text" value={credential} onChange={e => setCredential(e.target.value)
+                    } required />
+                </div>
+            </>
         )
     }
 
     return (
-        < form form onSubmit={handleSubmit} className="login-form" >
-            <ul>
-                {errors.map((error, idx) => (
-                    <li key={idx}>{error}</li>
-                ))}
-            </ul>
-
-            {user && <div className="login-form__avatar"><img src={`images/avatars/${user.avatar}`} alt="avatar" /></div>}
-
-            <div className="login-form__controls">
-
-                <button onClick={handleCancel} className="login-form__button login-form__button--cancel"><i className="fal fa-long-arrow-left"></i></button>
-                <div className="login-form__fields">
-                    {usernameEmail}
-                    <div>
-                        <label>
-                            Password
-                        </label>
-                        <input type="password" value={password} onChange={e => setPassword(e.target.value)} required />
+        <>
+            < form form onSubmit={handleSubmit} className="login-form form" >
+                <ul>
+                    {errors.map((error, idx) => (
+                        <li key={idx}>{error}</li>
+                    ))}
+                </ul>
+                {user && <div className="form__avatar"><img src={`images/avatars/${user.avatar}`} alt="avatar" /></div>}
+                <div className="form__controls">
+                    <button onClick={handleCancel} className="form__button form__button--cancel"><i className="fal fa-long-arrow-left"></i></button>
+                    <div className="form__fields">
+                        {usernameEmail}
+                        <div>
+                            <label>
+                                Password
+                            </label>
+                            <input type="password" value={password} onChange={e => setPassword(e.target.value)} required />
+                        </div>
                     </div>
+                    <button type="submit" className="form__button form__button--confirm"><i className="fal fa-check"></i></button>
                 </div>
-                <button type="submit" className="login-form__button login-form__button--confirm"><i className="fal fa-check"></i></button>
-            </div>
-        </form >
+            </form >
+        </>
     )
 }
