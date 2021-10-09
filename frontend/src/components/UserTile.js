@@ -11,8 +11,8 @@ export default function UserTile({ user, button }) {
             </div>
             <h2 className="user-tile__username">{username}</h2>
 
-            {button && <div class="user-tile__button">
-                <button onClick={button.handler}>{button.text}</button></div>}
+            {button && <div class="user-tile__button" onClick={button.handler}>
+                <p>{button.text}</p></div>}
 
         </div>
     )

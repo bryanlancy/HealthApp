@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { login } from '../../store/session'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
-export default function Login() {
+export default function Login({ userId, cancel }) {
     const dispatch = useDispatch()
-    const [credential, setCredential] = useState('')
+    const allUsers = useSelector(state => state.session.users)
+    const [credential, setCredential] = useState(userId ? allUsers[userId].username : '')
     const [password, setPassword] = useState('')
     const [errors, setErrors] = useState([])
 
@@ -16,6 +17,27 @@ export default function Login() {
             if (data && data.errors) setErrors(data.errors)
         })
     }
+    const handleCancel = e => {
+        setPassword('')
+        setCredential('')
+        setErrors([])
+        cancel()
+    }
+
+    let usernameEmail
+    if (userId) {
+        console.log(userId)
+        usernameEmail = (<p>Welcome back, {credential}</p>)
+    } else {
+        usernameEmail = (
+            <label>
+                Username or Email
+                <input type="text" value={credential} onChange={e => setCredential(e.target.value)
+                } required />
+            </label >)
+    }
+
+
 
     return (
         < form form onSubmit={handleSubmit} className="login-form" >
@@ -24,15 +46,13 @@ export default function Login() {
                     <li key={idx}>{error}</li>
                 ))}
             </ul>
-            <label>
-                Username or Email
-                <input type="text" value={credential} onChange={e => setCredential(e.target.value)} required />
-            </label>
+            {usernameEmail}
             <label>
                 Password
                 <input type="password" value={password} onChange={e => setPassword(e.target.value)} required />
             </label>
             <button type="submit">Log In</button>
+            <button onClick={handleCancel}>Cancel</button>
         </form >
     )
 }

@@ -1,0 +1,11 @@
+.existing-users {
+	display: grid;
+	grid-auto-flow: column;
+
+	justify-content: center;
+	align-items: center;
+
+	height: 75%;
+
+	gap: 32px;
+}

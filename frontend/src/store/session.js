@@ -29,7 +29,13 @@ export const getUsers = () => async (dispatch) => {
   const response = await csrfFetch("/api/users")
   if (response.status === 200) {
     const data = await response.json()
-    const { users } = data
+    let { users } = data
+    users = Object.assign({}, ...users.map(user => {
+      const { username, avatar } = user
+      return {
+        [user.id]: { username, avatar }
+      }
+    }))
     dispatch(setUsers(users))
     return users
   }

@@ -7,9 +7,7 @@ import WorkoutGroupCreator from '../WorkoutGroupCreator'
 
 export default function HomePage() {
 
-
 	const { default: sorted } = useSelector(state => state.workouts.sortedWorkouts)
-
 
 	return (
 		<div className="page">
